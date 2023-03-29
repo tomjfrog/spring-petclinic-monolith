@@ -28,8 +28,6 @@ pipelines:
             - name: {{ .Values.artifactory }}
           inputResources:
             - name: git_repository
-          outputResources:
-            - name: mvn_build_info
         execution:
           onStart:
             - echo "Starting the Maven build step"
@@ -39,3 +37,12 @@ pipelines:
             - echo "Maven build step failed"
           onComplete:
             - echo "Maven build step completed"
+
+      - name: publish_build
+        type: PublishBuildInfo
+        configuration:
+          forceXrayScan: false
+          inputSteps:
+            - name: mvn_build_step
+          outputResources:
+            - name: mvn_build_info
