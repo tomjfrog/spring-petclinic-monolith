@@ -13,10 +13,6 @@ resources:
       artifactory: {{ .Values.artifactory }}
       integrations:
         - name: {{ .Values.artifactory }}
-  - name: mvn_build_info
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: {{ .Values.artifactory }}
 
 pipelines:
   - name: petclinic_monolith_pipeline
