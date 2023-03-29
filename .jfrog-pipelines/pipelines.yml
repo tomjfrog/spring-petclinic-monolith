@@ -7,6 +7,7 @@ resources:
     configuration:
       gitProvider: {{ .Values.gitProvider }}
       path: {{ .Values.repoPath }}
+
   - name: mvn_build_info
     type: BuildInfo
     configuration:
@@ -19,7 +20,6 @@ pipelines:
         type: MvnBuild
         configuration:
           mvnCommand: "clean install"
-          autoPublishBuildInfo: true
           resolverSnapshotRepo: {{ .Values.deployerRepo }}
           resolverReleaseRepo: {{ .Values.deployerRepo }}
           deployerSnapshotRepo: {{ .Values.deployerRepo }}
