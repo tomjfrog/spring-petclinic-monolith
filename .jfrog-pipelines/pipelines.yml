@@ -5,8 +5,13 @@ resources:
   - name: git_repository
     type: GitRepo
     configuration:
-      path: {{ .Values.repoPath }}
       gitProvider: {{ .Values.gitProvider }}
+      path: {{ .Values.repoPath }}
+      branches:
+        include: {{ .Values.gitBranch }}
+      buildOn:
+        commit: true
+      cloneProtocol: HTTPS
   - name: artifactory
     type: Artifactory
     configuration:
