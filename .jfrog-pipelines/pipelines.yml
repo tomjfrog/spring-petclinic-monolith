@@ -8,10 +8,10 @@ resources:
       gitProvider: {{ .Values.gitProvider }}
       path: {{ .Values.repoPath }}
 
-  - name: mvn_build_info
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: {{ .Values.artifactory }}
+#  - name: mvn_build_info
+#    type: BuildInfo
+#    configuration:
+#      sourceArtifactory: {{ .Values.artifactory }}
 
 pipelines:
   - name: petclinic_monolith_pipeline
