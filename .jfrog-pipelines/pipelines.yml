@@ -7,8 +7,6 @@ resources:
     configuration:
       gitProvider: {{ .Values.gitProvider }}
       path: {{ .Values.repoPath }}
-      branches:
-        include: {{ .Values.gitBranch }}
       buildOn:
         commit: true
       cloneProtocol: HTTPS

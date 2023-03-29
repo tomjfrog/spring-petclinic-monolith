@@ -1,6 +1,6 @@
 repoPath: tomjfrog/spring-petclinic-monolith
 gitProvider: Github_tomjfrog
-gitBranch: main
+gitBranch: "main"
 artifactory: jfrog_cloud
 deployerRepo: petclinicmonolith-maven-dev
 
