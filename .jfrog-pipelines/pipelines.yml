@@ -1,0 +1,47 @@
+template: true
+valuesFilePath: ./values.yml
+
+resources:
+  - name: git_repository
+    type: GitRepo
+    configuration:
+      path: {{ .Values.repoPath }}
+      gitProvider: {{ .Values.gitProvider }}
+  - name: artifactory
+    type: Artifactory
+    configuration:
+      artifactory: {{ .Values.artifactory }}
+      integrations:
+        - name: {{ .Values.artifactory }}
+  - name: mvn_build_info
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: {{ .Values.artifactory }}
+
+pipelines:
+  - name: petclinic_monolith_pipeline
+    steps:
+      - name: maven_build_step
+        type: MvnBuild
+        configuration:
+          mvnCommand: "clean install"
+          autoPublishBuildInfo: true
+          resolverSnapshotRepo: {{ .Values.deployerRepo }}
+          resolverReleaseRepo: {{ .Values.deployerRepo }}
+          deployerSnapshotRepo: {{ .Values.deployerRepo }}
+          deployerReleaseRepo: {{ .Values.deployerRepo }}
+          integrations:
+            - name: {{ .Values.artifactory }}
+          inputResources:
+            - name: git_repository
+          outputResources:
+            - name: mvn_build_info
+        execution:
+          onStart:
+            - echo "Starting the Maven build step"
+          onSuccess:
+            - echo "Maven build step succeeded"
+          onFailure:
+            - echo "Maven build step failed"
+          onComplete:
+            - echo "Maven build step completed"

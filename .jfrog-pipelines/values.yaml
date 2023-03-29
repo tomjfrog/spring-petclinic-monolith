@@ -1,0 +1,24 @@
+repoPath:
+  type: string
+  description: The path to the Git repository
+  default: tomjfrog/spring-petclinic-monolith
+gitProvider:
+  name: tomjfrog-git-provider
+  type: GitRepo
+  configuration:
+    gitProvider: Github
+    path: tomjfrog/spring-petclinic-monolith
+    branches:
+      - main
+    integrations:
+      - name: tomjfrog-artifactory
+artifactory:
+  name: jfrog_cloud
+  type: Artifactory
+  configuration:
+    artifactory: jfrog_cloud
+    integrations:
+      - name: tomjfrog-artifactory
+deployerRepo: petclinicmonolith-maven-dev
+
+
