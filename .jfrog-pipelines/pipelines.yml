@@ -1,4 +1,4 @@
-valuesFilePath: .
+valuesFilePath: ./
 
 resources:
   - name: git_repository
