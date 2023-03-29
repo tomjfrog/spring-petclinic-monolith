@@ -1,4 +1,3 @@
-template: true
 valuesFilePath: ./values.yml
 
 resources:
@@ -7,9 +6,6 @@ resources:
     configuration:
       gitProvider: {{ .Values.gitProvider }}
       path: {{ .Values.repoPath }}
-      buildOn:
-        commit: true
-      cloneProtocol: HTTPS
   - name: artifactory
     type: Artifactory
     configuration:
