@@ -1,4 +1,4 @@
-valuesFilePath: ./values.yml
+valuesFilePath: .
 
 resources:
   - name: git_repository
