@@ -16,7 +16,7 @@ resources:
 pipelines:
   - name: petclinic_monolith_pipeline
     steps:
-      - name: maven_build_step
+      - name: mvn_build_step
         type: MvnBuild
         configuration:
           mvnCommand: "clean install"
