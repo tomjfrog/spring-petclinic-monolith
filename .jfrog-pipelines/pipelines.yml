@@ -35,7 +35,7 @@ pipelines:
           inputResources:
             - name: git_repository
           outputResources:
-            - name: mvn_build_info
+            - name: build_info
         execution:
           onStart:
             - echo "Starting the Maven build step"
