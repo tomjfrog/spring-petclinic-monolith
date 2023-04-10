@@ -10,7 +10,7 @@ resources:
       buildOn:
         commit: true
       branches:
-        include: {{ .Values.gitBranch }}
+        include: 'main'
       tags:
         include: '-rc-\d*'
       cancelPendingRunsOn:
