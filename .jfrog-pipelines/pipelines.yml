@@ -7,11 +7,17 @@ resources:
     configuration:
       gitProvider: {{ .Values.gitProvider }}
       path: {{ .Values.repoPath }}
+      branches:
+        include: '*'
 
-#  - name: mvn_build_info
-#    type: BuildInfo
-#    configuration:
-#      sourceArtifactory: {{ .Values.artifactory }}
+  # GitHub Tag Event
+  - name: github_tag_event
+    type: Webhook
+    configuration:
+      source:
+        name: git_repository
+      events:
+        - tag_push
 
 pipelines:
   - name: petclinic_monolith_pipeline
