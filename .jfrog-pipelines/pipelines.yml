@@ -15,8 +15,6 @@ resources:
         include: '-rc-\d*'
       cancelPendingRunsOn:
         newCommit: true
-        pullRequest: true
-        newTag: true
 
 pipelines:
   - name: petclinic_monolith_pipeline
