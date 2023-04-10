@@ -7,6 +7,16 @@ resources:
     configuration:
       gitProvider: {{ .Values.gitProvider }}
       path: {{ .Values.repoPath }}
+      buildOn:
+        commit: true
+      branches:
+        include: {{ .Values.gitBranch }}
+      tags:
+        include: '-rc-\d*'
+      cancelPendingRunsOn:
+        newCommit: true
+        pullRequest: true
+        newTag: true
 
 pipelines:
   - name: petclinic_monolith_pipeline
