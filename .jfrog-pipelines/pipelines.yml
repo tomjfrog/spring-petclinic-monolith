@@ -7,17 +7,6 @@ resources:
     configuration:
       gitProvider: {{ .Values.gitProvider }}
       path: {{ .Values.repoPath }}
-      branches:
-        include: '*'
-
-  # GitHub Tag Event
-  - name: github_tag_event
-    type: Webhook
-    configuration:
-      source:
-        name: git_repository
-      events:
-        - tag_push
 
 pipelines:
   - name: petclinic_monolith_pipeline
@@ -52,3 +41,34 @@ pipelines:
             - name: mvn_build_step
           outputResources:
             - name: mvn_build_info
+  - name: promote_to_stage_on_tag_create
+    steps:
+      - name: check_tag_event
+        type: Bash
+        configuration:
+          inputResources:
+            - name: git_repository
+          integrations:
+            - name: {{ .Values.gitProvider }}
+          environmentVariables:
+            GITHUB_REF: '${res_source_repo[0].commit.ref'
+        execution:
+          onStart:
+            - |
+              if [[ $GITHUB_REF == refs/tags/* ]]; then
+                echo "Tag created"
+                exit 0
+              else
+                echo "Not a tag"
+                exit 1
+              fi
+      - name: perform_action_on_tag_create
+        type: Bash
+        configuration:
+          runCondition: "is_tag_event=true"
+        execution:
+          onStart:
+            - |
+              echo "Performing action on tag create event..."
+              # Add your custom actions or commands here          
+          

@@ -419,7 +419,7 @@
   <scm>
     <connection>scm:git:https://github.com/tomjfrog/spring-petclinic-monolith.git</connection>
     <developerConnection>scm:git:https://github.com/tomjfrog/spring-petclinic-monolith.git</developerConnection>
-    <url>https://github.com/tomjfrog/spring-petclinic-monolith</url>
+    <url>https://github.com/tomjfrog/spring-petclinic-monolith  </url>
   </scm>
 
 
