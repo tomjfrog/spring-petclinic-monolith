@@ -70,14 +70,3 @@ pipelines:
                 echo "Not a tag"
                 exit 1
               fi
-      - name: perform_action_on_tag_create
-        type: Bash
-        configuration:
-          inputResources:
-            - name: check_tag_event
-        execution:
-          onStart:
-            - |
-              echo "Performing action on tag create event..."
-              # Add your custom actions or commands here          
-          
