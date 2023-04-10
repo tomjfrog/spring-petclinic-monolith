@@ -64,6 +64,9 @@ pipelines:
               fi
       - name: perform_action_on_tag_create
         type: Bash
+        configuration:
+          inputResources:
+            - name: mvn_build_info
         execution:
           onStart:
             - |
