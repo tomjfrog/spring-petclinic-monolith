@@ -65,7 +65,6 @@ pipelines:
       - name: perform_action_on_tag_create
         type: Bash
         execution:
-          runCondition: "is_tag_event=true"
           onStart:
             - |
               echo "Performing action on tag create event..."
