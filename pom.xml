@@ -207,35 +207,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>buildnumber-maven-plugin</artifactId>
-        <version>3.0.0</version>
-        <executions>
-          <execution>
-            <phase>validate</phase>
-            <goals>
-              <goal>create</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <!-- Optional: Specify a custom build number format -->
-          <format>{0,number,integer}</format>
-          <!-- Optional: Specify the property that will store the generated build number -->
-          <buildNumberPropertyName>buildNumber</buildNumberPropertyName>
-          <!-- Optional: If true, the plugin will check if the project has uncommitted changes -->
-          <doCheck>true</doCheck>
-          <!-- Optional: If true, the plugin will update the project version with the build number -->
-          <doUpdate>true</doUpdate>
-          <!-- Optional: If true, the plugin will fail the build if there are uncommitted changes -->
-          <failOnUncommittedChanges>true</failOnUncommittedChanges>
-          <!-- Optional: If true, the plugin will fail the build if the project is not built from a SCM -->
-          <failOnMissingSCM>false</failOnMissingSCM>
-          <!-- Optional: If true, the plugin will fail the build if the SCM branch is detached -->
-          <failOnDetachedBranch>false</failOnDetachedBranch>
-        </configuration>
-      </plugin>
       <!-- Spring Boot Actuator displays build-related information if a git.properties
         file is present at the classpath -->
       <plugin>
@@ -248,7 +219,7 @@
       </plugin>
 
     </plugins>
-    <finalName>${artifactId}-${version}-${build.buildNumber}</finalName>
+    <finalName>${artifactId}-${version}-${buildNumber}</finalName>
   </build>
 
   <licenses>
