@@ -26,7 +26,7 @@ resources:
 pipelines:
   - name: petclinic_monolith_pipeline
     configuration:
-      affinityGroup: default
+      affinityGroup: default-dynamic-nodepool
     steps:
       - name: mvn_build_step
         type: MvnBuild
