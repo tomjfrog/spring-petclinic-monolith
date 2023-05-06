@@ -53,12 +53,12 @@ pipelines:
         type: DockerBuild
         configuration:
           dockerFileLocation: .
-          dockerFile: Dockerfile
-          dockerImage: tomjfrog/spring-petclinic-monolith
-          dockerTag: ${run_number}
+          dockerFileName: Dockerfile
+          dockerImageName: tomjfrog/spring-petclinic-monolith
+          dockerImageTag: ${run_number}
           inputResources:
               - name: git_repository
-          integration:
+          integrations:
             - name: {{ .Values.artifactory }}
       - name: docker_push
         type: DockerPush
