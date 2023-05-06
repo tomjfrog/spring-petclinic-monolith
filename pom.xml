@@ -219,7 +219,7 @@
       </plugin>
 
     </plugins>
-    <finalName>${artifactId}-${version}-${buildNumber}</finalName>
+    <finalName>${artifactId}-${version}</finalName>
   </build>
 
   <licenses>

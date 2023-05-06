@@ -3,5 +3,6 @@ gitProvider: Github_tomjfrog
 gitBranch: "main"
 artifactory: jfrog_cloud
 deployerRepo: petclinicmonolith-maven-dev
+dockerRepo: petclinicmonolith-docker-dev-virtual
 
 

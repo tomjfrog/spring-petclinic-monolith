@@ -15,9 +15,18 @@ resources:
         include: '-rc-\d*'
       cancelPendingRunsOn:
         newCommit: true
+  - name: docker_image
+    type: Image
+    configuration:
+      registry: {{ .Values.artifactory }}
+      sourceRepository: {{ .Values.dockerRepo }}
+      imageName: {{ .Values.dockerRepo }}/{{ .Values.repoPath }}
+      imageTag: ${run_number}
 
 pipelines:
   - name: petclinic_monolith_pipeline
+    configuration:
+      affinityGroup: default
     steps:
       - name: mvn_build_step
         type: MvnBuild
@@ -40,7 +49,27 @@ pipelines:
             - echo "Maven build step failed"
           onComplete:
             - echo "Maven build step completed"
-
+      - name: docker_build
+        type: DockerBuild
+        configuration:
+          dockerFileLocation: .
+          dockerFile: Dockerfile
+          dockerImage: tomjfrog/spring-petclinic-monolith
+          dockerTag: ${run_number}
+          inputResources:
+              - name: git_repository
+          integration:
+            - name: {{ .Values.artifactory }}
+      - name: docker_push
+        type: DockerPush
+        configuration:
+          targetRepository: {{ .Values.dockerRepo }}
+          inputSteps:
+            - name: docker_build
+          integrations:
+            - name: {{ .Values.artifactory }}
+          outputResources:
+            - name: docker_image
       - name: publish_build
         type: PublishBuildInfo
         configuration:
