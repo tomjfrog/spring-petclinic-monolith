@@ -15,13 +15,6 @@ resources:
         include: '-rc-\d*'
       cancelPendingRunsOn:
         newCommit: true
-  - name: docker_image
-    type: Image
-    configuration:
-      registry: {{ .Values.artifactory }}
-      sourceRepository: {{ .Values.dockerRepo }}
-      imageName: {{ .Values.dockerRepo }}/{{ .Values.repoPath }}
-      imageTag: ${run_number}
 
 pipelines:
   - name: petclinic_monolith_pipeline
@@ -62,6 +55,7 @@ pipelines:
           integrations:
             - name: {{ .Values.artifactory }}
             - name: docker_access_token
+            - name: docker_registry
       - name: docker_push
         type: DockerPush
         configuration:
