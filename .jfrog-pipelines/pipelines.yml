@@ -15,17 +15,10 @@ resources:
         include: '-rc-\d*'
       cancelPendingRunsOn:
         newCommit: true
-  - name: docker_registry
-    type: DockerRegistry
-    configuration:
-      registry: {{ .Values.artifactory }}
-      sourceRepository: {{ .Values.dockerRepo }}
-      imageName: {{ .Values.dockerRepo }}/{{ .Values.repoPath }}
-      imageTag: ${run_number}
   - name: docker_image
     type: Image
     configuration:
-      registry: {{ .Values.artifactory }}
+      registry: {{ .Values.dockerRegistry }}
       sourceRepository: {{ .Values.dockerRepo }}
       imageName: {{ .Values.dockerRepo }}/{{ .Values.repoPath }}
       imageTag: ${run_number}

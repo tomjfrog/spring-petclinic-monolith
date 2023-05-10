@@ -1,6 +1,6 @@
 # Use a base image that has Java 17 installed and is available in Artifactory
 ARG REGISTRY=https://tomjfrog.jfrog.io/artifactory/petclinicmonolith-docker-dev-virtual/artifactory
-FROM tomjfrog.jfrog.io/petclinicmonolith-docker-dev-virtual/openjdk:17-jdk-slim
+FROM openjdk:17-jdk-slim
 
 # Set the working directory to /app
 WORKDIR /app
