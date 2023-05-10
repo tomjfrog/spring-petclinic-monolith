@@ -25,9 +25,9 @@ resources:
   - name: docker_image
     type: Image
     configuration:
-      registry: { { .Values.artifactory } }
-      sourceRepository: { { .Values.dockerRepo } }
-      imageName: { { .Values.dockerRepo } }/{{ .Values.repoPath }}
+      registry: {{ .Values.artifactory }}
+      sourceRepository: {{ .Values.dockerRepo }}
+      imageName: {{ .Values.dockerRepo }}/{{ .Values.repoPath }}
       imageTag: ${run_number}
 
 pipelines:
