@@ -26,12 +26,12 @@ resources:
 pipelines:
   - name: petclinic_monolith_pipeline
     configuration:
-      affinityGroup: default-dynamic-nodepool
+      affinityGroup: default
     steps:
       - name: mvn_build_step
         type: MvnBuild
         configuration:
-          mvnCommand: "clean install"
+          mvnCommand: "clean package"
           resolverSnapshotRepo: {{ .Values.deployerRepo }}
           resolverReleaseRepo: {{ .Values.deployerRepo }}
           deployerSnapshotRepo: {{ .Values.deployerRepo }}
@@ -54,12 +54,14 @@ pipelines:
         configuration:
           dockerFileLocation: .
           dockerFileName: Dockerfile
-          dockerImageName: tomjfrog/spring-petclinic-monolith
+          dockerImageName: tomjfrog.jfrog.io/{{ .Values.dockerRepo }}
           dockerImageTag: ${run_number}
+          dockerOptions: build-arg JF_TOKEN=int_docker_access_token_access_token
           inputResources:
               - name: git_repository
           integrations:
             - name: {{ .Values.artifactory }}
+            - name: docker_access_token
       - name: docker_push
         type: DockerPush
         configuration:
