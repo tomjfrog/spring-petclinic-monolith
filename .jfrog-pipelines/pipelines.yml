@@ -56,7 +56,7 @@ pipelines:
           dockerFileName: Dockerfile
           dockerImageName: tomjfrog.jfrog.io/{{ .Values.dockerRepo }}
           dockerImageTag: ${run_number}
-          dockerOptions: build-arg JF_TOKEN=int_docker_access_token_access_token
+          dockerOptions: --build-arg JF_TOKEN=${int_docker_access_token_access_token}
           inputResources:
               - name: git_repository
           integrations:
