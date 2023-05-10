@@ -59,6 +59,8 @@ pipelines:
           dockerOptions: --build-arg JF_TOKEN=${int_docker_access_token_access_token}
           inputResources:
               - name: git_repository
+          inputSteps:
+            - name: mvn_build_step
           integrations:
             - name: {{ .Values.artifactory }}
             - name: docker_access_token
