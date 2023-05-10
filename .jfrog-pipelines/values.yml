@@ -4,6 +4,6 @@ gitBranch: "main"
 artifactory: jfrog_cloud
 dockerRegistry: docker_registry
 deployerRepo: petclinicmonolith-maven-dev
-dockerRepo: tomjfrog.jfrog.io/petclinicmonolith-docker-dev-virtual
+dockerRepo: petclinicmonolith-docker-dev-virtual
 
 
