@@ -20,7 +20,7 @@ resources:
     configuration:
       registry: {{ .Values.dockerRegistry }}
       sourceRepository: {{ .Values.dockerRepo }}
-      imageName: {{ .Values.dockerRepo }}
+      imageName: {{ .Values.imageName }}
       imageTag: ${run_number}
 
 pipelines:

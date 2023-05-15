@@ -5,5 +5,6 @@ artifactory: jfrog_cloud
 dockerRegistry: docker_registry
 deployerRepo: petclinicmonolith-maven-dev
 dockerRepo: petclinicmonolith-docker-dev-virtual
+imageName: petclinic
 
 
