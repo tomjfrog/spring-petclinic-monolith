@@ -18,7 +18,7 @@ RUN curl $APP_REPO/org/springframework/samples/spring-petclinic/3.0.0-SNAPSHOT/s
 
 # 2nd stage, build the runtime image
 ARG REGISTRY=tomjfrog.jfrog.io/petclinicmonolith-docker-dev-virtual
-FROM $REGISTRY/amazoncorretto:17
+FROM $REGISTRY/amazoncorretto:17-alpine-jdk
 WORKDIR /app
 
 COPY --from=builder /app/app.jar .
