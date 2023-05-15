@@ -71,6 +71,7 @@ pipelines:
         type: DockerPush
         configuration:
           affinityGroup: default
+          targetRepository: {{ .Values.dockerRepo }}
           inputSteps:
             - name: docker_build
           integrations:
