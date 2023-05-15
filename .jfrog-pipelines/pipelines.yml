@@ -20,7 +20,7 @@ resources:
     configuration:
       registry: {{ .Values.dockerRegistry }}
       sourceRepository: {{ .Values.dockerRepo }}
-      imageName: {{ .Values.imageName }}
+      imageName: tomjfrog.jfrog.io/{{ .Values.dockerRepo }}/{{ .Values.imageName }}
       imageTag: ${run_number}
 
 pipelines:
@@ -52,9 +52,10 @@ pipelines:
       - name: docker_build
         type: DockerBuild
         configuration:
+          affinityGroup: default
           dockerFileLocation: .
           dockerFileName: Dockerfile
-          dockerImageName: tomjfrog.jfrog.io/{{ .Values.dockerRepo }}
+          dockerImageName: tomjfrog.jfrog.io/{{ .Values.dockerRepo }}/{{ .Values.imageName }}
           dockerImageTag: ${run_number}
           dockerOptions: --build-arg JF_TOKEN=${JF_TOKEN}
           inputResources:
@@ -69,7 +70,7 @@ pipelines:
       - name: docker_push
         type: DockerPush
         configuration:
-          targetRepository: {{ .Values.dockerRepo }}
+          affinityGroup: default
           inputSteps:
             - name: docker_build
           integrations:
@@ -81,7 +82,7 @@ pipelines:
         configuration:
           forceXrayScan: false
           inputSteps:
-            - name: mvn_build_step
+            - name: docker_push
           outputResources:
             - name: mvn_build_info
   - name: promote_to_stage_on_tag_create
