@@ -31,7 +31,7 @@ pipelines:
       - name: mvn_build_step
         type: MvnBuild
         configuration:
-          mvnCommand: "clean package"
+          mvnCommand: "clean install -DskipTests=true"
           resolverSnapshotRepo: {{ .Values.deployerRepo }}
           resolverReleaseRepo: {{ .Values.deployerRepo }}
           deployerSnapshotRepo: {{ .Values.deployerRepo }}
